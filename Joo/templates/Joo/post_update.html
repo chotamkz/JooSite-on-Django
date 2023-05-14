@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update</title>
+  </head>
+  <body>
+    <div style="background-color: #ebebeb">
+        <div style="margin-left: 560px; margin-top: 100px">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p}}
+            <div style="justify-content: center">
+                <input type="submit" value="Update" style="background-color: #fe5a21; color: white">
+            </div>
+        </form>
+    </div>
+    </div>
+  </body>
+</html>

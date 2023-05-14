@@ -1,0 +1,54 @@
+{% extends 'post.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="">
+<head>
+<style>
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+</style>
+</head>
+<body>
+
+<h1 style="text-align: center; font-family: Verdana, Arial, sans-serif">Users</h1>
+
+<table>
+  <tr>
+    <th>Username</th>
+    <th>Email Address</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th style="color: #058c00"><a href="{% url 'add-delete' %}">ADD USERS</a></th>
+  </tr>
+    {% for user in users %}
+        {% if not user.is_superuser %}
+            <tr>
+            <td style="color: #4a89dc">
+                <a href="{% url 'users-update' user.id %}">{{ user.username }}</a>
+            </td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.first_name }}</td>
+            <td>{{ user.last_name }}</td>
+            <td style="color: red"><a href="{% url 'users-delete' user.id %}">DELETE</a></td>
+            </tr>
+        {% endif %}
+     {% endfor %}
+</table>
+
+</body>
+</html>
+{% endblock %}

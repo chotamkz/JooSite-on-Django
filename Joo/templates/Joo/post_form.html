@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create</title>
+  </head>
+  <body>
+    <div style="background-color: #ebebeb">
+        <div style="margin-left: 560px; margin-top: 100px">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+           de
+                {{ form.as_p}}
+            {% else %}
+                <div style="display: block; border: 2px solid #777777; margin-right: 50%; padding-left: 80px; padding-top: 10px">
+                    <div>
+                      Name:
+                      {{ form.name }}
+                  </div>
+                    <br>
+                    <div>
+                        Publication_date:
+                        {{ form.publication_date }}
+                    </div><br>
+                    <div>
+                        Publisher:
+                        {{ form.publisher }}
+                    </div><br>
+                    <div>
+                        Description:
+                        {{ form.description }}
+                    </div><br>
+                    <div>
+                        Creator_id
+                        {{ form.creator_id }}
+                    </div><br>
+                    <div>
+                        Post_image:
+                        {{ form.post_image }}
+                    </div><br>
+                </div>
+            {% endif %}
+            <input type="submit" value="Create" style="background-color: #fe5a21; color: white">
+        </form>
+    </div>
+    </div>
+  </body>
+</html>

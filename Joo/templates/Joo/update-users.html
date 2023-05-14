@@ -1,0 +1,48 @@
+{% extends 'post.html' %}
+
+{% block content %}
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div style="background-color: #3f3f3f; padding-left: 30%;">
+                <div style="background-color: #c4bcbc;text-align: center; border: 3px solid #f3742a; width: 60%; border-radius:2% ">
+                    <div>
+                    <h2>Username</h2>
+                    {{ form.username }}
+                    <h2>Password</h2>
+                    {{ form.password }}
+                </div>
+                <br>
+                <div>
+                    <h2>First name:</h2>
+                    {{ form.first_name }}
+                    <h2>Last name:</h2>
+                    {{ form.last_name }}
+                    <h2>Email address:</h2>
+                    {{ form.email }}
+                </div>
+                <br>
+                <div>
+                    <h2>Active</h2>
+                    {{ form.is_active }}
+                    <h2>Staff status</h2>
+                    {{ form.is_staff }}
+                    <h2>SuperUser status</h2>
+                    {{ form.is_superuser }}
+                    <h2>User permissions:</h2>
+                    {{ form.user_permissions }}
+                </div>
+                <br>
+                <div>
+                    <h2>Last login:</h2>
+                    {{ form.last_login }}
+                    <h2>Date joined:</h2>
+                    {{ form.date_joined }}
+                </div>
+                    <br>
+                     <div style="justify-content: center">
+                       <input type="submit" value="Save" style="background-color: #fe5a21; color: white">
+                     </div>
+                </div>
+            </div>
+        </form>
+{% endblock %}

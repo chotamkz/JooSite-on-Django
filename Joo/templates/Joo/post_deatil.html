@@ -1,0 +1,48 @@
+{% extends 'post.html' %}
+
+{% block content %}
+
+    <div class="w-50 min-h-screen bg-gray-200 p-3 sm:p-6 md:p-12">
+  <main class="w-50 lg:w-3/4 mx-auto flex flex-wrap content-start">
+  {% for post in posts %}
+    <div class="w-full" style="">
+      <a href="{% url 'post-detail' post.id%}">
+      <!-- Vertical card -->
+      <div id="card1" class=" bg-gray-100 shadow-lg rounded overflow-hidden" >
+        <div>
+            {% if post.post_image %}
+                <img src="{{ post.post_image.url }}" alt="Placeholder" class="w-full h-50 object-cover object-center" style="height: 500px"/>
+            {% endif %}
+        </div>
+        <div class="p-6">
+          <h4 class="text-2xl">{{ post.name }}</h4>
+            <br>
+            <p class="text-bg-secondary text-base" style="color: #636363">Author: {{ post.publisher }}</p>
+            <br>
+            <p class="text-bg-secondary text-base" style="color: #636363">Publicated: {{ post.publication_date}}</p>
+            <br>
+          <p class="text-l">{{ post.description }}</p>
+            <br>
+            <br>
+          <p class="text-l">Просмотры - {{ post.num_visits }}</p>
+        </div>
+        <footer class="flex border-t border-gray-200">
+                  {% if request.user.is_superuser %}
+                      <a href="{% url 'update-post' post.id%}">
+                          <button class="w-full bg-gray-100 hover:bg-gray-200 p-3 text-gray-700 hover:text-blue-500 focus:outline-none focus:bg-blue-100 focus:text-blue-500" style="color: #4a89dc">Update Post</button>
+                      </a>
+                      <a href="{% url 'delete-post' post.id%}">
+                          <button class="w-full bg-gray-100 hover:bg-gray-200 p-3 text-gray-700 hover:text-blue-500 focus:outline-none focus:bg-blue-100 focus:text-blue-500 " style="color: red">Delete Post</button>
+                      </a>
+                  {% endif %}
+        </footer>
+      </div>
+      <br>
+      <br>
+   {% endfor %}
+    </a>
+    </div>
+  </main>
+</div>
+
+{% endblock content%}

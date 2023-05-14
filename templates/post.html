@@ -1,0 +1,113 @@
+<html lang="en" dir="ltr">
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <title>JooEdu</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/post.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato" >
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.0.1/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.lineicons.com/1.0.1/LineIcons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div class="sidebar">
+    <div class="logo-details">
+      <img src="https://edu.joo.kz/assets/img/logo.svg" style="margin-left: 30px">
+    </div>
+    <ul class="nav-links">
+      <li>
+        <a href="{% url 'posts' %}">
+          <i class='bx bx-grid-alt'></i>
+          <span class="link_name">Лента</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Обучение</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="#">
+          <i class='bx bx-pie-chart-alt-2'></i>
+          <span class="link_name">Обучение</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Analytics</a></li>
+        </ul>
+      </li>
+      <li>
+        <a href="#">
+          <i class='bx bx-line-chart'></i>
+          <span class="link_name">ВУЗы</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Chart</a></li>
+        </ul>
+      </li>
+
+      <li>
+        <a href="{% url 'history-posts' %}">
+          <i class='bx bx-compass'></i>
+          <span class="link_name">История</span>
+        </a>
+        <ul class="sub-menu blank">
+          <li><a class="link_name" href="#">Explore</a></li>
+        </ul>
+      </li>
+       {% if request.user.is_superuser %}
+           <li style="background-color: #4a89dc">
+               <a href="{% url 'users' %}">
+                   <i class='bx bx-shield' style="color: #f1f1f1"></i>
+                   <span class="link_name" style="color: #f1f1f1">Users</span>
+               </a>
+               <ul class="sub-menu blank">
+            <li><a class="link_name" href="#">Explore</a></li>
+        </ul>
+           </li>
+           <li style="background-color: #fe5a21">
+               <a href="{% url 'post-able' %}">
+                   <i class='bx bx-archive' style="color: #f1f1f1"></i>
+                   <span class="link_name" style="color: #f1f1f1">Доступ</span>
+               </a>
+               <ul class="sub-menu blank">
+                   <li><a class="link_name" href="#">Explore</a></li>
+               </ul>
+           </li>
+       {% endif %}
+     {% if request.user.is_authenticated %}
+      <li>
+       <a href="{% url 'profile-edit' request.user.id%}">
+           <div class="profile-details">
+          <div class="profile-content">
+            <img src="http://placebeard.it/250/250" alt="profileImg">
+          </div>
+          <div class="name-job">
+            <div class="profile_name">{{ request.user }}</div>
+            <div class="job">Software Engineer</div>
+          </div>
+            <a href="{% url 'logout' %}">
+                 <i class='bx bx-log-out' href="{% url 'logout' %}"></i>
+            </a>
+        </div>
+       </a>
+      </li>
+      {% else %}
+        <p>
+            <a href="{% url 'login' %}">Login</a>
+        </p>
+      {% endif %}
+    </ul>
+  </div>
+  <section class="home-section">
+        {% block card %}
+        {% endblock %}
+        {% block content %}
+        {% endblock %}
+  </section>
+</body>
+
+</html>

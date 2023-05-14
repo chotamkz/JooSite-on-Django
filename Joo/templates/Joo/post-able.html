@@ -1,0 +1,61 @@
+{% extends 'post.html' %}
+{% block card %}
+    <nav style="background-color: #2f2c2b; position: sticky; border-bottom: 2px solid #cecece; top: 0;position: -webkit-sticky; z-index: 10">
+        <div style="text-align: center;display: flex; margin-left: 20%; margin-right: 20%;justify-content: space-between;">
+            <div>
+                <form action="{% url 'search' %}" method="post">
+                    {% csrf_token %}
+                    <input type="text" placeholder="Search.." name="search" style="font-size: larger; padding: 6px">
+                    <button type="submit"><i class="fa fa-search" style="color: #ebebeb; padding: 5px; font-size: larger"></i></button>
+                </form>
+            </div>
+            <div >
+                {% if request.user.is_superuser %}
+                    <a href="{% url 'create-post' %}">
+                        <button type="button" style="background-color: #fe5a21; color: white; padding: 3.5px"><h1 style="margin: 5px">Create</h1></button>
+                    </a>
+                {% else %}
+                    <a href="{% url 'create-post' %}">
+                        <button type="button" style="background-color: #2167fe; color: white; padding: 3.5px"><h1 style="margin: 5px">Create own post!</h1></button>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+<div class="w-50 min-h-screen bg-gray-200 p-3 sm:p-6 md:p-12" style="background-color: #989898">
+  <main class="w-50 lg:w-3/4 mx-auto flex flex-wrap content-start">
+      {% for post in posts %}
+           {% if not post.in_active %}
+              <a href="{% url 'post-detail' post.id%}">
+              <!-- Vertical card -->
+              <div id="card1" class=" bg-gray-100 shadow-lg rounded overflow-hidden" style="margin-bottom: 30px; border: 3px solid red" >
+                  <div class="p-6">
+                      <h4 class="text-2xl">{{ post.name }}</h4>
+                      <p class="my-1">Подробнее👇</p>
+                  </div>
+                  <div>
+                      {% if post.post_image %}
+                          <img src="{{ post.post_image.url }}" alt="Placeholder" class="w-full h-50 object-cover object-center" style="height: 500px"/>
+                      {% endif %}
+                  </div>
+                  <footer class="flex border-t border-gray-200">
+                      {% if request.user.is_superuser %}
+                          <a href="{% url 'update-post' post.id%}">
+                              <button class="w-full bg-gray-100 hover:bg-gray-200 p-3 text-gray-700 hover:text-blue-500 focus:outline-none focus:bg-blue-100 focus:text-blue-500" style="color: #4a89dc">Edit Post</button>
+                          </a>
+                          <a href="{% url 'delete-post' post.id%}">
+                              <button class="w-full bg-gray-100 hover:bg-gray-200 p-3 text-gray-700 hover:text-blue-500 focus:outline-none focus:bg-blue-100 focus:text-blue-500 " style="color: red">Delete Post</button>
+                          </a>
+                      {% endif %}
+                  </footer>
+              </div>
+              <br>
+              <br>
+              <br>
+          {% endif %}
+      {% endfor %}
+      </a>
+  </main>
+</div>
+
+{% endblock %}

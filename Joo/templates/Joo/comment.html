@@ -1,0 +1,8 @@
+{% block content %}
+    <div>
+        <form action="" method="POST">
+            {% csrf_token %}
+            {{ comment.as_p}}
+        </form>
+    </div>
+{% endblock %}

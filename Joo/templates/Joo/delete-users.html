@@ -1,0 +1,40 @@
+{% extends 'post.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create</title>
+  </head>
+  <body>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+    <div style="background-color: #ebebeb; border-top: 100px">
+        <div style="background-color: #ffffff; width: 20%; border: 2px solid red; margin-left: 35%">
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div style="text-align: center">
+                 Are u sure delete this user?
+                <br>
+                {{ users.username}}
+                <br>
+                <input type="submit" value="DELETE" style="background-color: #fe5a21; color: white">
+            </div>
+        </form>
+    </div>
+    </div>
+  </body>
+</html>
+{% endblock %}

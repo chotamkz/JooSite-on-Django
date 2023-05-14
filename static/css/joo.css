@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 3rem;
+}
+
+
+.logo h3 {
+  font-size: 1.3rem;
+}
+
+
+nav ul {
+  display: flex;
+  list-style: none;
+}
+
+nav a {
+  text-decoration: none;
+  margin: 2rem;
+  font-size: 1.1rem;
+}
+
+img{
+  height: 30px;
+}
+button{
+  border-radius: 50%;
+}
